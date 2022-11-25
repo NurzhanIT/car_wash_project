@@ -1,9 +1,6 @@
-from django.shortcuts import render
-from rest_framework import generics, mixins
-from rest_framework.viewsets import ModelViewSet
-
-from .models import VideoSet, VideoFile, Car
-from .serializers import VideoSetSerializer, VideoSerializer, CarSerializer
+from rest_framework import generics
+from .models import VideoSet, VideoFile
+from .serializers import VideoSetSerializer, VideoSerializer
 
 
 class VideoSetView(generics.ListAPIView):
@@ -11,11 +8,6 @@ class VideoSetView(generics.ListAPIView):
     serializer_class = VideoSetSerializer
 
 
-
 class VideoFileView(generics.ListAPIView):
     queryset = VideoFile.objects.all()
     serializer_class = VideoSerializer
-
-class CarView(generics.ListAPIView):
-    queryset = Car.objects.all()
-    serializer_class = CarSerializer
