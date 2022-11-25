@@ -18,9 +18,7 @@ from django.db import models
 #
 class VideoSet(models.Model):
     set_name = models.CharField(max_length=100, primary_key=True)
-    set_start_date = models.DateField(auto_now_add=False, blank=True)
-    set_end_date = models.DateField(auto_now_add=False, blank=True)
-
+    set_date = models.DateField(auto_now_add=False, blank=True)
 
     def __str__(self):
         return self.set_name

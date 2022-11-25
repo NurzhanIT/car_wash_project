@@ -5,18 +5,20 @@ from video_set.models import VideoSet, VideoFile, Car
 
 class VideoSetSerializer(serializers.ModelSerializer):
     # videos = serializers.SerializerMethodField()
-    set_interval = serializers.SerializerMethodField()
+    set_date = serializers.SerializerMethodField()
     cars_quantity = serializers.SerializerMethodField()
 
     class Meta:
         model = VideoSet
-        fields = ['set_name', 'set_interval','cars_quantity']
+        fields = ['set_name', 'set_date', 'cars_quantity']
 
-    def get_set_interval(self, request):
-        set_interval = 'c %s до %s' % (request.set_start_date, request.set_end_date)
-        return set_interval.strip()
+    @staticmethod
+    def get_set_date(request):
+        set_date = request.set_date
+        return set_date
 
-    def get_cars_quantity(self, related_video):
+    @staticmethod
+    def get_cars_quantity(related_video):
         return Car.objects.filter(related_video=related_video).count()
 
     # def get_videos(self, video_set):
@@ -33,5 +35,6 @@ class VideoSerializer(serializers.ModelSerializer):
         model = VideoFile
         fields = ['video', 'cars_quantity']
 
-    def get_cars_quantity(self, related_video):
+    @staticmethod
+    def get_cars_quantity(related_video):
         return Car.objects.filter(related_video=related_video).count()
