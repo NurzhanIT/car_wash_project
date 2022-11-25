@@ -1,26 +1,11 @@
 from django.db import models
 
 
-# class Video(models.Model):
-#     video = models.FileField(upload_to='video/videos/', primary_key=True)
-#     date = models.DateField(auto_now_add=False)
-#     carNum = models.IntegerField()
-#
-#
-# class Car(models.Model):
-#     date = models.DateField(auto_now_add=False)
-#     arrived_time = models.TimeField()
-#     left_time = models.TimeField()
-#     video = models.ForeignKey(Video, on_delete=models.CASCADE)
-#     id = models.IntegerField(max_length=1000)
-
-# !User создает VideoSet. Сет имеет видеоматериалы(VideoFiles) за определенный интервал времени.
+# !User создает VideoSet в котором видео записи за отдельные боксы
 #
 class VideoSet(models.Model):
-    set_name = models.CharField(max_length=100, primary_key=True)
-    set_start_date = models.DateField(auto_now_add=False, blank=True)
-    set_end_date = models.DateField(auto_now_add=False, blank=True)
-
+    set_name = models.CharField(max_length=100)
+    set_date = models.DateField(auto_now_add=False)
 
     def __str__(self):
         return self.set_name
@@ -33,7 +18,9 @@ class VideoSet(models.Model):
 
 class VideoFile(models.Model):
     video = models.FileField(upload_to='video/videos/')
+    video_date = models.DateField(auto_now_add=False)
     video_set = models.ForeignKey('video_set.VideoSet', on_delete=models.CASCADE)
+    box = models.CharField(max_length=50, default='номер бокса')
 
 
 class Car(models.Model):
