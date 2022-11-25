@@ -34,10 +34,11 @@ class VideoSet(models.Model):
 class VideoFile(models.Model):
     video = models.FileField(upload_to='video/videos/')
     video_set = models.ForeignKey('video_set.VideoSet', on_delete=models.CASCADE)
-    quantity_of_cars = models.IntegerField()
 
 
 class Car(models.Model):
+    come_time = models.DateTimeField(auto_now_add=False)
+    left_time = models.DateTimeField(auto_now_add=False)
     car_brand = models.TextField(max_length=100)
     car_type = models.TextField(max_length=100)
     car_nomer = models.CharField(max_length=100)
