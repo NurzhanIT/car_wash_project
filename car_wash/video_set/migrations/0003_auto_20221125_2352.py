@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('video_set', '0002_rename_video_car_related_video'),
+        ('video_set', 'video_set.0003_auto_20221125_2352'),
     ]
 
     operations = [
