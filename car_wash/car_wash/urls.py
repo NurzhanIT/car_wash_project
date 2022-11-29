@@ -18,10 +18,12 @@ from django.urls import path
 from django.conf.urls.static import static
 
 from car_wash import settings
-from video_set.views import VideoSetView,VideoFileView
+from video_set.views import VideoSetView, VideoFileView, FramesView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/get-video-set/', VideoSetView.as_view()),
-    path('api/vidolar', VideoFileView.as_view()),
+    path('api/post-frames/', FramesView.as_view()),
+    path('api/vidos-list', VideoFileView.as_view()),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

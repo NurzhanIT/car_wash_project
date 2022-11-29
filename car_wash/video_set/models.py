@@ -29,3 +29,8 @@ class Car(models.Model):
     car_type = models.TextField(max_length=100)
     car_nomer = models.CharField(max_length=100)
     related_video = models.ForeignKey('video_set.VideoFile', on_delete=models.CASCADE)
+
+
+class Frame(models.Model):
+    frame = models.ImageField(upload_to='api_frames/frames/', null=True)
+    # name = models.CharField(max_length=100)

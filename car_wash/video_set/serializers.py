@@ -1,10 +1,6 @@
 from rest_framework import serializers
 
-from video_set.models import VideoSet, VideoFile, Car
-
-
-
-from video_set.models import VideoSet, VideoFile, Car
+from video_set.models import VideoSet, VideoFile, Car, Frame
 
 
 class CarSerializer(serializers.ModelSerializer):
@@ -28,35 +24,14 @@ class VideoSerializer(serializers.ModelSerializer):
 class VideoSetSerializer(serializers.ModelSerializer):
     videofile_set = VideoSerializer(many=True, read_only=True)
 
-
     class Meta:
         model = VideoSet
         fields = ['set_name', 'set_date', 'videofile_set']
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class FramesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Frame
+        fields = '__all__'
 
 
